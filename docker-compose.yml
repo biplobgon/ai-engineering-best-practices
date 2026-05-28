@@ -1,0 +1,69 @@
+version: "3.9"
+
+services:
+  # Redis for caching (exact + semantic) and rate limiting
+  redis:
+    image: redis:7-alpine
+    container_name: aiengineer-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    profiles: ["all", "core"]
+
+  # PostgreSQL with pgvector for metadata + vector storage
+  postgres:
+    image: pgvector/pgvector:pg16-latest
+    container_name: aiengineer-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-aiengineer}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    profiles: ["all", "core", "rag"]
+
+  # Jaeger for distributed tracing
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: aiengineer-jaeger
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "6831:6831/udp"  # Jaeger agent
+      - "16686:16686"    # Jaeger UI
+      - "4317:4317"      # OTLP receiver
+    profiles: ["all", "obs"]
+
+  # MLflow for model registry and experiment tracking
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: aiengineer-mlflow
+    ports:
+      - "5000:5000"
+    command: mlflow server --host 0.0.0.0 --default-artifact-root /mlflow/artifacts
+    volumes:
+      - mlflow_data:/mlflow
+    profiles: ["all", "mlops"]
+
+volumes:
+  redis_data:
+  postgres_data:
+  mlflow_data:
+
+networks:
+  default:
+    name: aiengineer-net

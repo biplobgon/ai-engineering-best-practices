@@ -1,0 +1,47 @@
+name: Eval Gate
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  eval-regression:
+    name: Evaluation Regression Gate
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'eval-required') || contains(github.head_ref, 'prompt/') || contains(github.head_ref, 'model/') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: uv sync --all-extras
+
+      - name: Run evaluation suite
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Eval gate — running regression tests..."
+          uv run pytest -v tests/eval/ -m "eval" --tb=short
+          echo "✅ Evaluation suite passed"
+
+      - name: Comment on PR
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Evaluation suite passed'
+            })
