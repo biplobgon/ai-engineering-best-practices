@@ -1,37 +1,32 @@
 # Cost Optimization
 
-Status: ?? Planned (Phase P3)
+**Status:** ?? Planned (P3)
 
-One-sentence purpose: TBD in Phase P3.
+Model routing, semantic caching, batching, prompt caching.
 
 ## What You'll Learn
 
-- Concept 1 (TBD)
-- Concept 2 (TBD)
-- Concept 3 (TBD)
+- TBD in P3
+- TBD in P3
+- TBD in P3
 
-## Concept Overview
+## Module Overview
 
 | Aspect | Details |
 |---|---|
-| **Cost** | TBD |
-| **Latency** | TBD |
+| **Focus** | TBD |
 | **Complexity** | TBD |
+| **Phase** | P3 |
 
-## Implementation
+## Coming Soon
 
-Coming in Phase P3.
-
-## Tradeoffs
-
-TBD
+Implementation scheduled for P3. See [ROADMAP.md](../ROADMAP.md) for details.
 
 ## Next Steps
 
-- See [README.md](../README.md) for module index
-- See [ROADMAP.md](../ROADMAP.md) for Phase P3 details
-- See [LEARNING_PATH.md](../LEARNING_PATH.md) for curriculum
+- [See ROADMAP.md for P3 timeline](../ROADMAP.md)
+- [Review LEARNING_PATH.md](../LEARNING_PATH.md)
 
 ---
 
-*Last updated: Phase 1 (scaffolding). Implementation coming Phase P3.*
+*Created in Phase 1. Implementation in P3.*

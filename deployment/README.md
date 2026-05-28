@@ -1,37 +1,32 @@
 # Deployment
 
-Status: ?? Planned (Phase P7)
+**Status:** ?? Planned (P7)
 
-One-sentence purpose: TBD in Phase P7.
+FastAPI service, streaming SSE, async jobs.
 
 ## What You'll Learn
 
-- Concept 1 (TBD)
-- Concept 2 (TBD)
-- Concept 3 (TBD)
+- TBD in P7
+- TBD in P7
+- TBD in P7
 
-## Concept Overview
+## Module Overview
 
 | Aspect | Details |
 |---|---|
-| **Cost** | TBD |
-| **Latency** | TBD |
+| **Focus** | TBD |
 | **Complexity** | TBD |
+| **Phase** | P7 |
 
-## Implementation
+## Coming Soon
 
-Coming in Phase P7.
-
-## Tradeoffs
-
-TBD
+Implementation scheduled for P7. See [ROADMAP.md](../ROADMAP.md) for details.
 
 ## Next Steps
 
-- See [README.md](../README.md) for module index
-- See [ROADMAP.md](../ROADMAP.md) for Phase P7 details
-- See [LEARNING_PATH.md](../LEARNING_PATH.md) for curriculum
+- [See ROADMAP.md for P7 timeline](../ROADMAP.md)
+- [Review LEARNING_PATH.md](../LEARNING_PATH.md)
 
 ---
 
-*Last updated: Phase 1 (scaffolding). Implementation coming Phase P7.*
+*Created in Phase 1. Implementation in P7.*

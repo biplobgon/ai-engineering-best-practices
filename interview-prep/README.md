@@ -1,37 +1,32 @@
 # Interview Prep
 
-Status: ?? Planned (Phase P9)
+**Status:** ?? Planned (P9)
 
-One-sentence purpose: TBD in Phase P9.
+System design, coding rounds, ML/LLM fundamentals, behavioral.
 
 ## What You'll Learn
 
-- Concept 1 (TBD)
-- Concept 2 (TBD)
-- Concept 3 (TBD)
+- TBD in P9
+- TBD in P9
+- TBD in P9
 
-## Concept Overview
+## Module Overview
 
 | Aspect | Details |
 |---|---|
-| **Cost** | TBD |
-| **Latency** | TBD |
+| **Focus** | TBD |
 | **Complexity** | TBD |
+| **Phase** | P9 |
 
-## Implementation
+## Coming Soon
 
-Coming in Phase P9.
-
-## Tradeoffs
-
-TBD
+Implementation scheduled for P9. See [ROADMAP.md](../ROADMAP.md) for details.
 
 ## Next Steps
 
-- See [README.md](../README.md) for module index
-- See [ROADMAP.md](../ROADMAP.md) for Phase P9 details
-- See [LEARNING_PATH.md](../LEARNING_PATH.md) for curriculum
+- [See ROADMAP.md for P9 timeline](../ROADMAP.md)
+- [Review LEARNING_PATH.md](../LEARNING_PATH.md)
 
 ---
 
-*Last updated: Phase 1 (scaffolding). Implementation coming Phase P9.*
+*Created in Phase 1. Implementation in P9.*

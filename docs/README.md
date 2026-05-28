@@ -1,37 +1,32 @@
-# Docs
+# Documentation
 
-Status: ?? Planned (Phase P10)
+**Status:** ?? Planned (P10)
 
-One-sentence purpose: TBD in Phase P10.
+mkdocs-material source.
 
 ## What You'll Learn
 
-- Concept 1 (TBD)
-- Concept 2 (TBD)
-- Concept 3 (TBD)
+- TBD in P10
+- TBD in P10
+- TBD in P10
 
-## Concept Overview
+## Module Overview
 
 | Aspect | Details |
 |---|---|
-| **Cost** | TBD |
-| **Latency** | TBD |
+| **Focus** | TBD |
 | **Complexity** | TBD |
+| **Phase** | P10 |
 
-## Implementation
+## Coming Soon
 
-Coming in Phase P10.
-
-## Tradeoffs
-
-TBD
+Implementation scheduled for P10. See [ROADMAP.md](../ROADMAP.md) for details.
 
 ## Next Steps
 
-- See [README.md](../README.md) for module index
-- See [ROADMAP.md](../ROADMAP.md) for Phase P10 details
-- See [LEARNING_PATH.md](../LEARNING_PATH.md) for curriculum
+- [See ROADMAP.md for P10 timeline](../ROADMAP.md)
+- [Review LEARNING_PATH.md](../LEARNING_PATH.md)
 
 ---
 
-*Last updated: Phase 1 (scaffolding). Implementation coming Phase P10.*
+*Created in Phase 1. Implementation in P10.*
