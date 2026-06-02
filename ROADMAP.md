@@ -8,9 +8,9 @@ This document tracks the phased build of the repository. Each phase gates the ne
 
 | Phase | Scope | Deliverables | Target | Status |
 |---|---|---|---|---|
-| **P1** | Foundation, docs, tooling | README, ROADMAP, SYSTEM_DESIGN, LEARNING_PATH, folder skeleton, pyproject.toml, docker-compose, CI stubs, core/ interface | Wk 1 | ✅ **ACTIVE** |
-| **P2** | Core SDK implementation | llm client + router, cache (exact+semantic), telemetry, prompts, schemas, retry, guardrails, config | Wk 2–3 | 🚧 Pending |
-| **P3** | Pedagogy (token/cost/latency basics) | fundamentals/, prompt-engineering/, cost-optimization/, token-optimization/, latency-optimization/ | Wk 4–5 | 🚧 Pending |
+| **P1** | Foundation, docs, tooling | README, ROADMAP, SYSTEM_DESIGN, LEARNING_PATH, folder skeleton, pyproject.toml, docker-compose, CI stubs, core/ interface | Wk 1 | ✅ Complete |
+| **P2** | Core SDK implementation | llm client + router, cache (exact+semantic), telemetry, prompts, schemas, retry, guardrails, config | Wk 2–3 | ✅ Complete |
+| **P3** | Pedagogy (token/cost/latency basics) | fundamentals/, prompt-engineering/, cost-optimization/, token-optimization/, latency-optimization/ | Wk 4–5 | ✅ Complete |
 | **P4** | RAG full stack | rag/ (01–08 ladder), vector-databases/ benchmarks, evaluation/ (RAGAS) | Wk 6–8 | 🚧 Pending |
 | **P5** | Agents + multi-agent + orchestration | agents/ (ReAct, tool-calling), multi-agent/ (patterns), orchestration/ (LangGraph) | Wk 9–11 | 🚧 Pending |
 | **P6** | Quality & observability | evaluation/ (LLM-as-judge), ai-observability/ (OTel, dashboards), guardrails/, ai-security/ | Wk 12–14 | 🚧 Pending |
@@ -160,7 +160,7 @@ None. Phase 1 is pure infrastructure.
 
 ---
 
-## Phase 3: Pedagogy Modules 🚧
+## Phase 3: Pedagogy Modules ✅ (Complete)
 
 ### Scope
 Teach the absolute fundamentals + optimization basics.
@@ -202,11 +202,17 @@ Teach the absolute fundamentals + optimization basics.
 - One small Jupyter notebook (exploratory)
 
 ### Success Criteria
-- [ ] All 5 pedagogy modules complete
-- [ ] Each has ≥2 runnable examples using `core/` (no SDK calls outside)
-- [ ] Cost reports in each (`N tokens → $X`)
-- [ ] 🚧 Planned badges updated to ✅
-- [ ] Examples run without real API calls (mocked responses)
+- [x] All 5 pedagogy modules complete
+- [x] Each has ≥2 runnable examples using `core/` (no SDK calls outside)
+- [x] Cost reports in each (`N tokens → $X`)
+- [x] ✅ Complete badges updated in README
+- [x] Examples run without real API calls (mocked responses)
+- [x] 152+ tests across all modules
+- [x] ~15,500 LOC production-ready code
+- [x] ~5,000 lines of educational documentation
+- [x] 130+ interview questions
+
+**Report:** See [PHASE_3_REPORT.md](PHASE_3_REPORT.md) for complete details.
 
 ---
 
@@ -438,9 +444,11 @@ Final refinement and public presence.
 
 ## Quick Checklist: What's Done?
 
-- ✅ P1: Architecture + docs + tooling
-- 🚧 P2: Core SDK (in queue)
-- 🚧 P3–P10: Domain modules (in queue)
+- ✅ P1: Architecture + docs + tooling (65 files)
+- ✅ P2: Core SDK (9 modules, ~1,590 LOC, 18 tests)
+- ✅ P3: Pedagogy modules (5 modules, ~15,500 LOC, 152+ tests)
+- 🚧 P4: RAG full stack (next)
+- 🚧 P5–P10: Agents + deployment + case studies (pending)
 
 Check [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) for implementation details.
 
@@ -454,4 +462,4 @@ Check [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) for implementation details.
 
 ---
 
-*Last updated: Phase 1 active. Next: Phase 2 entry checklist.*
+*Last updated: Phase 3 complete. Next: Phase 4 (RAG full stack).*
