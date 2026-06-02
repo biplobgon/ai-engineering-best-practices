@@ -53,6 +53,8 @@ See `examples/basic_usage.py` for working code samples of all features.
 # Clone and setup
 git clone https://github.com/YOUR_GITHUB/ai-engineering-best-practices.git
 cd ai-engineering-best-practices
+
+# Install dependencies (requires uv: pip install uv)
 uv sync
 
 # Set API keys
@@ -62,12 +64,24 @@ cp .env.example .env
 # Start services (Redis, Postgres+pgvector, Jaeger)
 docker-compose up -d
 
-# Run tests
+# Run tests (all 18 core tests)
 make test
 
-# Explore a module
-cd prompt-engineering/patterns
-python -m pytest -v
+# Try the core SDK examples (requires API keys)
+python examples/basic_usage.py
+
+# Example: Use the LLM client
+python -c "
+from core.llm import chat
+import asyncio
+
+async def demo():
+    response = await chat([{'role': 'user', 'content': 'Hello!'}])
+    print(f'Response: {response.text}')
+    print(f'Cost: ${response.cost_usd:.6f}')
+
+asyncio.run(demo())
+"
 ```
 
 ---
@@ -173,14 +187,17 @@ ai-engineering-best-practices/
 ## Core Principles (Why This Repo Exists)
 
 ### 🎯 Token Efficiency = Cost Efficiency
-- Every module prioritizes **shorter prompts**, **better schemas**, **smarter caching**.
-- Examples default to **cheap models** (Anthropic Claude Haiku).
-- We show **token-per-operation cost** in every scenario.
+- Every LLM call tracks **tokens in/out**, **USD cost**, **latency**, **cache status**
+- Examples default to **cheap models** (Anthropic Claude Haiku: $0.80/1M tokens)
+- Semantic caching saves costs by reusing similar query responses
+- Model router automatically selects cheapest appropriate model
 
 ### 🏗️ Production-Ready From Day One
-- All code has logging, retries, error handling, typing.
-- All examples are runnable with real APIs (fixture-only cost).
-- All patterns include observability hooks.
+- All code has **logging**, **retries** (Tenacity), **error handling**, **type hints**
+- OpenTelemetry tracing built into every LLM call
+- Pydantic v2 schemas with validation
+- Redis caching with TTL and graceful fallback
+- Guardrails for PII detection, jailbreak prevention
 
 ### 🔌 Composable Over Monolithic
 - Each module stands alone; no mandatory dependencies.
@@ -223,6 +240,52 @@ We obsess over **tokens-per-outcome**:
 6. **Context optimization** — prune non-essential context before sending
 
 Every case study includes a **cost report**: expected spend for 1M users, 10M calls.
+
+### Example: Full-Stack LLM Call with All Features
+
+```python
+from core.llm import chat
+from core.guardrails import validate_input
+from core.eval import judge
+from core.telemetry import meters
+
+# Input validation (PII detection/redaction)
+user_input = "My email is john@example.com, can you help?"
+validation = await validate_input(user_input)
+
+# LLM call (auto-cached, auto-traced, auto-retried)
+response = await chat([
+    {"role": "user", "content": validation.redacted or user_input}
+])
+
+# Output: tokens, cost, latency tracked automatically
+print(f"Response: {response.text}")
+print(f"Cost: ${response.cost_usd:.6f}")
+print(f"Tokens: {response.tokens_in} in, {response.tokens_out} out")
+print(f"Cached: {response.cached}")
+
+# Evaluation (LLM-as-judge)
+score = await judge(
+    prediction=response.text,
+    reference="Expected helpful response",
+    rubric="Is the response helpful and accurate?"
+)
+print(f"Quality score: {score.score:.2f} - {score.reasoning}")
+
+# View cumulative metrics
+stats = meters.get_stats()
+print(f"Total cost today: ${sum(stats['usd_cost'].values()):.4f}")
+```
+
+---
+
+## Testing & Quality
+
+**Phase 2 includes:**
+- 18 unit tests covering all core modules
+- Config validation, Pydantic schema tests, model router tests
+- All tests pass with zero external API dependencies (mocked)
+- Run with: `make test` or `pytest tests/`
 
 ---
 
